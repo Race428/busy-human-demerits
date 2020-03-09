@@ -33,9 +33,23 @@ class Demerits extends Component {
                 names: res.data
             })
         })
+
+        setInterval(
+           this.getUsers
+            , 60000
+        )
     };
 
-    //console.log('sup')
+    getUsers = async () => {
+        console.log('ran')
+        await axios.get('/getUsers').then(res => {
+            this.setState({
+                names: res.data
+            })
+
+
+        })
+    }  //console.log('sup')
 
     nameHandle = (value) => {
         this.setState({
@@ -56,9 +70,9 @@ class Demerits extends Component {
         document.getElementById('newNameInput').value = ""
     }
 
-    addDemerit = async (index) => { 
+    addDemerit = async (index) => {
         var user = this.state.names[index];
-        await axios.post('/addDemerit', {name: user, count: +user.demerit_count + 1}).then(res => { 
+        await axios.post('/addDemerit', { name: user, count: +user.demerit_count + 1 }).then(res => {
             console.log(res.data)
             var names = this.state.names
             names[index] = res.data[0]
@@ -70,10 +84,10 @@ class Demerits extends Component {
         // await axios.post('/addDemerit', {user_id: user.id})
     }
 
-    subDemerit = async (index) => { 
+    subDemerit = async (index) => {
         var user = this.state.names[index];
-      
-        await axios.post('/subDemerit', {name: user, count: +user.demerit_count - 1}).then(res => { 
+
+        await axios.post('/subDemerit', { name: user, count: +user.demerit_count - 1 }).then(res => {
             console.log(res.data)
             var names = this.state.names
             names[index] = res.data[0]
@@ -85,12 +99,21 @@ class Demerits extends Component {
 
 
     render() {
+var names = this.state.names
+names.sort(function(a,b){
+    if(a.name < b.name){
+        return -1
+    } 
+    if(a.name > b.name){
+        return 1
+    }
+})
 
-        const names = this.state.names.map((element, index) => {
+         names = this.state.names.map((element, index) => {
             return <div className="demerit-user" key={index}>
-               <h1 onClick={()=> this.subDemerit(index)}>-</h1>
+                <h1 onClick={() => this.subDemerit(index)}>-</h1>
                 <h1>{element.name}</h1>
-               <h1 onClick={()=> this.addDemerit(index)}>+</h1>
+                <h1 onClick={() => this.addDemerit(index)}>+</h1>
 
                 <h1>{element.demerit_count}</h1>
 
