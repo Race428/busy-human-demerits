@@ -1,0 +1,1 @@
+select * from demerit_users
