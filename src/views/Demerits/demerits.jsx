@@ -35,7 +35,7 @@ class Demerits extends Component {
         })
 
         setInterval(
-           this.getUsers
+            this.getUsers
             , 60000
         )
     };
@@ -99,24 +99,24 @@ class Demerits extends Component {
 
 
     render() {
-var names = this.state.names
-names.sort(function(a,b){
-    if(a.name < b.name){
-        return -1
-    } 
-    if(a.name > b.name){
-        return 1
-    }
-})
+        var names = this.state.names
+        names.sort(function (a, b) {
+            if (a.name < b.name) {
+                return -1
+            }
+            if (a.name > b.name) {
+                return 1
+            }
+        })
 
-         names = this.state.names.map((element, index) => {
+        names = this.state.names.map((element, index) => {
             return <div className="demerit-user" key={index}>
-                <h1 onClick={() => this.subDemerit(index)}>-</h1>
-                <h1>{element.name}</h1>
-                <h1 onClick={() => this.addDemerit(index)}>+</h1>
-
-                <h1>{element.demerit_count}</h1>
-
+                <h1 className="name">{element.name}</h1>
+                <div className="counter-container">
+                    <h1 onClick={() => this.subDemerit(index)}>-</h1>
+                    <h1>{element.demerit_count}</h1>
+                    <h1 onClick={() => this.addDemerit(index)}>+</h1>
+                </div>
             </div>
         })
 

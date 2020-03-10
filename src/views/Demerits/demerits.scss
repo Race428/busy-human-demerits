@@ -1,14 +1,27 @@
-.demerits-view{
-    height: 100vh; 
-    width: 100vw;
-    padding: 50px;
+.demerits-view {
+  height: 100vh;
+  width: 100vw;
 
+  .demerit-user {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+    margin: auto;
+    h1{
+        cursor: pointer;
+        user-select: none;
+    }
+   
+   
+  }
+ 
+}
+.counter-container{
 
-    .demerit-user{
-        display: flex;
-        h1{
-            margin: 10px;
-            cursor: pointer;
-        }
+     width: 20%;
+    display: flex;
+    justify-content: space-between;
+    h1{
+        cursor: pointer;
     }
 }
